@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Global from '../Global';
+import DetallesDoctor from './DetallesDoctor';
 
 export default class Doctores extends Component {
     state = {
         doctores: [],
-        nombreHospital: ''
+        nombreHospital: '',
+        idDoctor: null,
     }
 
     cargarNombreHospital = () => {
@@ -32,6 +34,12 @@ export default class Doctores extends Component {
         })
     }
 
+    mostrarDetalles = (idDoctor) => {
+        this.setState({
+            idDoctor: idDoctor
+        })
+    }
+
     componentDidMount = () => {
         this.cargarNombreHospital();
         this.cargarDoctores();
@@ -41,6 +49,10 @@ export default class Doctores extends Component {
         if (this.props.idHospital !== oldProps.idHospital) {
             this.cargarNombreHospital();
             this.cargarDoctores();
+
+            this.setState({
+                idDoctor: null
+            })
         }
     }
 
@@ -64,12 +76,22 @@ export default class Doctores extends Component {
                                 <tr key={i}>
                                     <td>{doc.apellido}</td>
                                     <td>{doc.especialidad}</td>
+
+                                    <td>
+                                        <button onClick={() => this.mostrarDetalles(doc.idDoctor)}>Mostrar detalles</button>
+                                    </td>
                                 </tr>
                             )
                         })
                     }
                     </tbody>
                 </table>
+                
+                {
+                    this.state.idDoctor && (
+                        <DetallesDoctor doctor={this.state.idDoctor} nombreHospital={this.state.nombreHospital}/>
+                    )
+                }
             </div>
         );
     }
