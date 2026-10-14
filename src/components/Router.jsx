@@ -5,6 +5,7 @@ import Menu from './Menu';
 import Doctores from './Doctores';
 import CreateHospital from './CreateHospital';
 import Hospitales from './Hospitales';
+import EjemploParaService from './EjemploParaService';
 
 export default class Router extends Component {
     render() {
@@ -22,6 +23,7 @@ export default class Router extends Component {
                     <Route path='/doctores/:idHospital' element={<DoctoresElement/>}/>
                     <Route path='/create_hospital' element={<CreateHospital/>} />
                     <Route path='/hospitales' element={<Hospitales/>} />
+                    <Route path='/ejemplos' element={<EjemploParaService/>} />
                 </Routes>
             </BrowserRouter>
         );
