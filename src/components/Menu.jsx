@@ -46,7 +46,11 @@ export default class Menu extends Component {
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
+                                <NavLink className="nav-link" to='/hospitales'>Hospitales</NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink className="nav-link" to='/create_hospital'>Crear Hospital</NavLink>
                             </li>
 
                             <li className="nav-item dropdown">
