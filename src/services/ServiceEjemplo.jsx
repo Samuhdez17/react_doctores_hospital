@@ -44,6 +44,6 @@ export default class ServiceEjemplo {
             }
         ]
         
-        return comics;
+        return comics
     }
 }

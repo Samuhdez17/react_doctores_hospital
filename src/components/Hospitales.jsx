@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Global from '../Global';
 import { NavLink } from 'react-router-dom';
+import ServiceHospitales from '../services/ServiceHospitales';
 
 export default class Hospitales extends Component {
-    url = Global.apiHopitales2
+    service = new ServiceHospitales()
 
     state = {
         hospitales: []
     }
 
     cargarHospitales = () => {
-        let request = '/api/hospitales'
-
-        axios.get(this.url + request)
-        .then((res) => {
+        this.service.getHospitales().then((res) => {
             this.setState({
-                hospitales: res.data
+                hospitales: res
             })
         })
     }

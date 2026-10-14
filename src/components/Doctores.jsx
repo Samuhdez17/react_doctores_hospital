@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Global from '../Global';
 import DetallesDoctor from './DetallesDoctor';
+import ServiceHospitales from '../services/ServiceHospitales';
 
 export default class Doctores extends Component {
+    service = new ServiceHospitales()
+
     state = {
         doctores: [],
         nombreHospital: '',
@@ -11,25 +12,17 @@ export default class Doctores extends Component {
     }
 
     cargarNombreHospital = () => {
-        const url = Global.apiHopitales2
-        const request = 'api/hospitales/' + this.props.idHospital;
-
-        axios.get(url + request)
-        .then((res) => {
+        this.service.getNombreHospital(this.props.idHospital).then((res) => {
             this.setState({
-                nombreHospital: res.data.nombre
+                nombreHospital: res
             })
         })
     }
 
     cargarDoctores = () => {
-        const url = Global.apiDoctores
-        const request = 'api/doctores/doctoreshospital/' + this.props.idHospital;
-
-        axios.get(url + request)
-        .then((res) => {
+        this.service.getDoctores(this.props.idHospital).then((res) => {
             this.setState({
-                doctores: res.data
+                doctores: res
             })
         })
     }
